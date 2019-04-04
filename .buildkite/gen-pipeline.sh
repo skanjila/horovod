@@ -75,7 +75,7 @@ run_test() {
   local command=$4
 
   echo "- label: '${label}'"
-  echo "  command: ${command}"
+  echo "  command: '${command}'"
   echo "  plugins:"
   echo "  - docker-compose#v2.6.0:"
   echo "      run: ${test}"
@@ -118,7 +118,7 @@ for test in ${tests[@]}; do
 
   # convenience templates
   if [[ ${queue} == "gpu" ]]; then
-    SET_CUDA_VISIBLE_DEVICES="CUDA_VISIBLE_DEVICES=\$(if [[ \${BUILDKITE_AGENT_NAME} == *\"-1\" ]]; then echo \"0,1,2,3\"; else echo \"4,5,6,7\"; fi)"
+    SET_CUDA_VISIBLE_DEVICES="CUDA_VISIBLE_DEVICES=\$(if [[ \\\${BUILDKITE_AGENT_NAME} == *\\\"-1\\\" ]]; then echo \\\"0,1,2,3\\\"; else echo \\\"4,5,6,7\\\"; fi)"
   else
     SET_CUDA_VISIBLE_DEVICES=""
   fi

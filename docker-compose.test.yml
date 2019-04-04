@@ -135,6 +135,7 @@ services:
     # the latter does not work in privileged mode that we use in the containers.
     environment:
       - CUDA_VISIBLE_DEVICES
+      - BUILDKITE_AGENT_NAME
     privileged: true
   test-gpu-openmpi-py2_7-tf1_6_0-keras2_1_2-torch0_4_1-mxnet1_4_0-pyspark2_3_2:
     extends: test-gpu-base
